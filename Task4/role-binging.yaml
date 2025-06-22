@@ -1,0 +1,46 @@
+# Привязка для Зрителя
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: viewer-binding
+subjects:
+- kind: User
+  name: user1
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: viewer-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+# Привязка для Администратора
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-binding
+subjects:
+- kind: User
+  name: user2
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: admin-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+# Привязка для Безопасности
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: security-binding
+  namespace: secure
+subjects:
+- kind: User
+  name: user3
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: security-role
+  apiGroup: rbac.authorization.k8s.io
