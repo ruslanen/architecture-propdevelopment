@@ -1,0 +1,38 @@
+@startuml
+
+title Контекстная диаграмма «PropDevelopment»
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(client, "Клиент", "Осуществляет подбор, покупку и бронирование объектов недвижимости")
+Person(houseowner, "Собственник", "Осуществляет операции, связанные с уже имеющимся у него объектом недвижимости (оплата ЖКХ, пользование сервисами, просмотр отчетов УК)")
+Person(manager, "Менеджер", "Работает с клиентами и объектами недвижимости, администрирует онлайн-сделки")
+Person(business_analytic, "Бизнес-аналитик", "Оптимизирует процессы и развивает прикладные бизнес-системы. Администрирует системы")
+Person(accountant, "Бухгалтер", "Ведёт бухгалтерский учёт")
+Person(bi_analytic, "Аналитик BI", "Анализирует данные и готовит отчётность")
+
+System(PropDevelopmentSystem, "Система «PropDevelopment»", "Набор сервисов по продаже недвижимости, а также обслуживанием ЖК")
+
+System_Ext(govermentRegistrationServices, "Государственные регистрационные органы", "Отвечают за регистрационные действия с объектами недвижимости")
+System_Ext(communalServices, "Поставщик ресурсов ЖКХ", "")
+System_Ext(paymentSystem, "Платёжная система", "Провайдер онлайн-платежей")
+
+System_Ext(intercomService, "Сервис интеллектуального домофона", "Провайдер сервиса для удаленного открытия двери с функцией видеосвязи")
+System_Ext(gateService, "Сервис интеллектуального шлагбаума", "Провайдер сервиса для открытия шлагбаума по номеру автомобиля")
+
+Rel(client, PropDevelopmentSystem, "")
+Rel(houseowner,PropDevelopmentSystem,"")
+Rel(manager,PropDevelopmentSystem,"")
+Rel(business_analytic,PropDevelopmentSystem,"")
+Rel(accountant,PropDevelopmentSystem,"")
+Rel(bi_analytic,PropDevelopmentSystem,"")
+
+Rel(PropDevelopmentSystem,govermentRegistrationServices,"")
+Rel(PropDevelopmentSystem,communalServices,"")
+Rel(PropDevelopmentSystem,paymentSystem,"")
+Rel(PropDevelopmentSystem,intercomService,"")
+Rel(PropDevelopmentSystem,gateService,"")
+
+@enduml
