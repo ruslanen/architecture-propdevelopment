@@ -1,0 +1,36 @@
+# create-roles.yaml
+
+# Роль для Зрителя
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: viewer-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "deployments", "configmaps"]
+  verbs: ["get", "list", "watch"]
+
+---
+
+# Роль для Администраторов
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: admin-role
+rules:
+- apiGroups: ["", "apps", "extensions"]
+  resources: ["*"]
+  verbs: ["*"]
+
+---
+
+# Роль для Безопасности
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: secure
+  name: security-role
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
